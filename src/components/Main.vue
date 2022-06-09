@@ -7,14 +7,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import MainUser from '@/components/MainUser.vue'
   import NavBar from '@/components/NavBar.vue'
   import MainSearch from '@/components/MainSearch.vue'
   import MainMyTeams from '@/components/MainMyTeams.vue'
   import { mapActions, mapGetters } from 'vuex'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     components: { MainUser, NavBar, MainSearch, MainMyTeams },
 
     mounted() {
@@ -28,7 +29,7 @@
     computed: {
       ...mapGetters('apiModule', ['teamsList']),
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

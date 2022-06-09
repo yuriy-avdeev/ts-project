@@ -8,16 +8,17 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
   import { mapGetters } from 'vuex'
-  import UiUserName from '@/components/UI/UiUserName'
+  import UiUserName from '@/components/UI/UiUserName.vue'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     components: { UiUserName },
     computed: {
       ...mapGetters(['userData', 'isLaptopScreen']),
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

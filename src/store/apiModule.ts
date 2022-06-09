@@ -1,14 +1,7 @@
 import { ActionContext, Module } from 'vuex'
 import axios from 'axios'
 import { State } from './index'
-
-type TeamType = {
-  id: number
-  is_following: Boolean
-  leagues: string[]
-  name: string
-  stadium: string
-}
+import {TeamType} from '../types/types'
 
 export type apiState = {
   teamsList: TeamType[]
@@ -62,7 +55,7 @@ export const apiModule: Module<apiState, State> = {
         // mock ->
         return new Promise((resolve) => {
           setTimeout(() => {
-            context.commit('handleSubscription', updatedCard) // update main list
+            context.commit('handleSubscription', updatedCard)
             resolve('success')
           }, 500)
         })

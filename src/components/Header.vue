@@ -19,13 +19,14 @@
   </div>
 </template>
 
-<script>
-  import UiUserName from '@/components/UI/UiUserName'
+<script lang="ts">
+  import UiUserName from '@/components/UI/UiUserName.vue'
   import iconLogo from '@/assets/images/logo.svg'
   import fullLogo from '@/assets/images/fullLogo.svg'
   import { mapGetters } from 'vuex'
-
-  export default {
+  import Vue from 'vue'
+  
+  export default Vue.extend({
     components: { UiUserName },
 
     data() {
@@ -36,7 +37,7 @@
     },
 
     methods: {
-      toMainPage() {
+      toMainPage(): void {
         this.$route.name !== 'main-route' && this.$router.push('/')
       },
     },
@@ -44,7 +45,7 @@
     computed: {
       ...mapGetters(['isLaptopScreen', 'userData']),
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

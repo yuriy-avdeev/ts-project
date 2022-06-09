@@ -1,11 +1,11 @@
 export const delayMixin = {
   methods: {
-    debounce: (callback: () => any, delay: number) => {
+    debounce: (callback: () => void, delay: number): any => {
       let timeoutID: number | undefined
-      return () => {
+      return function() {
         clearTimeout(timeoutID) 
         timeoutID = setTimeout(callback, delay)
-      }
+      } as Function
     },
   },
 }

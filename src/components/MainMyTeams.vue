@@ -8,16 +8,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import CardMyTeam from '@/components/CardMyTeam.vue'
   import { mapGetters } from 'vuex'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     components: { CardMyTeam },
     computed: {
       ...mapGetters('apiModule', ['myTeamsList']),
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

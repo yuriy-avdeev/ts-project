@@ -10,24 +10,22 @@
   </span>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import Vue from 'vue'
+
+  export default Vue.extend({
     props: {
       inputValue: String,
       text: String,
     },
 
     computed: {
-      parsedSearch() {
-        return `(${this.inputValue})`
-      },
-
       parsedMsg() {
         // as split + regex => idx in array - 1, 3, 5...
-        return this.text.split(new RegExp(this.parsedSearch, 'gi'))
+        return this.text.split(new RegExp(`(${this.inputValue})`, 'gi'))
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

@@ -13,12 +13,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import { delayMixin } from '@/mixins/mixins'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     mixins: [delayMixin],
-    emits: ['input', 'handleFocus'],
 
     props: {
       message: {
@@ -34,13 +34,13 @@
     },
 
     methods: {
-      handleFocus(e) {
+      handleFocus(e: any) {
         this.$emit('handleFocus', e.keyCode)
       },
 
       clearInput() {
+        ;(this.$refs.inputField as HTMLElement).focus()
         this.inputValue = ''
-        this.$refs.inputField.focus()
         this.handleInput()
       },
 
@@ -50,16 +50,16 @@
     },
 
     computed: {
-      validInput() {
+      validInput(): boolean {
         const regex = /^[a-zA-Z0-9]*$/g
         return regex.test(this.inputValue)
       },
 
-      handleDelayInput() {
+      handleDelayInput(): any {
         return this.debounce(this.handleInput, 500)
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

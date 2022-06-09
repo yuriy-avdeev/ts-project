@@ -36,29 +36,30 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import UiButton from '@/components/UI/UiButton.vue'
   import UiText from '@/components/UI/UiText.vue'
-  import {delayMixin} from '@/mixins/mixins'
+  import { delayMixin } from '@/mixins/mixins'
   import { mapActions } from 'vuex'
+  import Vue, { PropType } from 'vue'
+  import { TeamType } from '@/types/types'
 
-  export default {
-    emits: ['updateFollowing'],
+  export default Vue.extend({
     mixins: [delayMixin],
     components: { UiButton, UiText },
     props: {
-      card: Object,
+      card: Object as PropType<TeamType>,
       index: Number,
       focusNumber: Number,
       inputValue: String,
     },
 
     methods: {
-      mouseOver() {
+      mouseOver(): void {
         this.$emit('mouseOver')
       },
 
-      mouseLeave() {
+      mouseLeave(): void {
         this.$emit('mouseLeave')
       },
 
@@ -76,19 +77,19 @@
     },
 
     computed: {
-      isFocus() {
+      isFocus(): boolean {
         return this.focusNumber === this.index
       },
 
-      handleDelayMouseOver() {
+      handleDelayMouseOver(): any {
         return this.debounce(this.mouseOver, 100)
       },
 
-      handleDelayMouseLeave() {
+      handleDelayMouseLeave(): any {
         return this.debounce(this.mouseLeave, 100)
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

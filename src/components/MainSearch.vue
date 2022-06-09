@@ -31,24 +31,28 @@
   </div>
 </template>
 
-<script>
-  import UiInput from '@/components/UI/UiInput'
+<script lang="ts">
+  import UiInput from '@/components/UI/UiInput.vue'
   import CardSearched from '@/components/CardSearched.vue'
+  import Vue, { PropType } from 'vue'
+  import { TeamType } from '@/types/types'
 
-  export default {
+  export default Vue.extend({
     components: { UiInput, CardSearched },
-    props: { teamsList: Array },
+    props: {
+      teamsList: Array as PropType<TeamType[]>,
+    },
 
     data() {
       return {
         inputValue: '',
-        filteredList: [], // if need to retain search results between transition -> move it to store
+        filteredList: [] as TeamType[], // if need to retain search results between transition -> move it to store
         focusNumber: 0,
       }
     },
 
     methods: {
-      handleFocus(keyNumber) {
+      handleFocus(keyNumber: number) {
         if (!this.filteredList.length) return
         if (keyNumber === 40) {
           if (this.focusNumber + 1 === this.filteredList.length) return
@@ -60,17 +64,17 @@
         }
       },
 
-      updateFollowingCard(card) {
+      updateFollowingCard(card: TeamType) {
         const idx = this.filteredList.findIndex((c) => c.id === card.id)
         this.filteredList[idx].is_following = !this.filteredList[idx].is_following
       },
 
-      checkForMatches(string, inputValue) {
+      checkForMatches(string: string, inputValue: string) {
         // todo: combine (mixin) logic with UiText -> return segment.toLowerCase() === inputValue.toLowerCase()
         return string.toLowerCase().search(inputValue.toLowerCase())
       },
 
-      searchQuery(inputValue, isInputValid) {
+      searchQuery(inputValue: string, isInputValid: boolean) {
         this.inputValue = inputValue
         this.filteredList = []
         if (!isInputValid) return
@@ -80,7 +84,7 @@
             let checkedName = this.checkForMatches(card.name, inputValue)
             let checkedStadium = this.checkForMatches(card.stadium, inputValue)
             let hasStadium = false
-            card.leagues.forEach((league) => {
+            card.leagues.forEach((league: string) => {
               if (this.checkForMatches(league, inputValue) > -1) hasStadium = true
             })
 
@@ -89,7 +93,7 @@
         }
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

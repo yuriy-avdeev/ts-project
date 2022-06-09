@@ -7,12 +7,15 @@
   </div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import Vue, { PropType } from 'vue'
+  import { TeamType } from '@/types/types'
+
+  export default Vue.extend({
     props: {
-      card: Object,
+      card: Object as PropType<TeamType>,
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

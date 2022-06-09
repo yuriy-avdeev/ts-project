@@ -6,10 +6,10 @@
   </div>
 </template>
 
-<script>
-  export default {
-    emits: ['clickButton'],
-    
+<script lang='ts'>
+  import Vue from 'vue'
+
+  export default Vue.extend({
     props: {
       isActive: Boolean,
 
@@ -25,11 +25,11 @@
     },
 
     methods: {
-      clickButton(e) {
+      clickButton(e: Event): void {
         this.$emit('clickButton', e)
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>
