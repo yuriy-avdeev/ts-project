@@ -82,11 +82,11 @@
       },
 
       handleDelayMouseOver(): any {
-        return this.debounce(this.mouseOver, 100)
+        return (this as any).debounce(this.mouseOver, 100)
       },
 
       handleDelayMouseLeave(): any {
-        return this.debounce(this.mouseLeave, 100)
+        return (this as any).debounce(this.mouseLeave, 100)
       },
     },
   })

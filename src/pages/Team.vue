@@ -6,12 +6,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import MainUser from '@/components/MainUser.vue'
   import NavBar from '@/components/NavBar.vue'
   import { mapGetters } from 'vuex'
+  import { TeamType } from '../types/types'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     components: { MainUser, NavBar },
     props: ['id'],
 
@@ -22,9 +24,9 @@
     },
 
     mounted() {
-      // here should be a get request
+      // m.b. problem -> when type in field something => it requires GET-request or additional check and redirect to 404
       if (this.teamsList.length) {
-        this.team = this.teamsList.find((card) => card.id == this.id)
+        this.team = this.teamsList.find((card: TeamType) => card.id == this.id)
       } else {
         this.team = {
           id: 2525,
@@ -36,7 +38,7 @@
     computed: {
       ...mapGetters('apiModule', ['teamsList']),
     },
-  }
+  })
 </script>
 
 <style lang="scss" scoped>

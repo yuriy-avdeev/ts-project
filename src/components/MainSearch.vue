@@ -37,6 +37,9 @@
   import Vue, { PropType } from 'vue'
   import { TeamType } from '@/types/types'
 
+  const KEY_DOWN = 40
+  const KEY_UP = 38
+
   export default Vue.extend({
     components: { UiInput, CardSearched },
     props: {
@@ -54,11 +57,11 @@
     methods: {
       handleFocus(keyNumber: number) {
         if (!this.filteredList.length) return
-        if (keyNumber === 40) {
+        if (keyNumber === KEY_DOWN) {
           if (this.focusNumber + 1 === this.filteredList.length) return
           this.focusNumber++
         }
-        if (keyNumber === 38) {
+        if (keyNumber === KEY_UP) {
           if (this.focusNumber === 0) return
           this.focusNumber--
         }

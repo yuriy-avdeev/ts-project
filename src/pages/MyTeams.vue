@@ -4,10 +4,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import Main from '@/components/Main.vue'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     components: { Main },
-  }
+  })
 </script>

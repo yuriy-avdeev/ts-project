@@ -56,7 +56,7 @@
       },
 
       handleDelayInput(): any {
-        return this.debounce(this.handleInput, 500)
+        return (this as any).debounce(this.handleInput, 500)
       },
     },
   })

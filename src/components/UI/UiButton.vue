@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button @click.prevent.stop="clickButton" class="button" :class="{ button_active: isActive }">
+    <button @click.prevent.stop="$emit('clickButton')" class="button" :class="{ button_active: isActive }">
       {{ isActive ? isActiveText : text }}
     </button>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
   import Vue from 'vue'
 
   export default Vue.extend({
@@ -17,16 +17,10 @@
         type: String,
         default: 'FOLLOW',
       },
-      
+
       isActiveText: {
         type: String,
         default: 'FOLLOWING',
-      },
-    },
-
-    methods: {
-      clickButton(e: Event): void {
-        this.$emit('clickButton', e)
       },
     },
   })

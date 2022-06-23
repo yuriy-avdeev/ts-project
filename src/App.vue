@@ -5,11 +5,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import Header from '@/components/Header.vue'
   import { delayMixin } from '@/mixins/mixins'
+  import Vue from 'vue'
 
-  export default {
+  export default Vue.extend({
     mixins: [delayMixin],
     components: { Header },
 
@@ -29,7 +30,7 @@
     },
 
     methods: {
-      checkWindowWidth() {
+      checkWindowWidth(): void {
         if (window.innerWidth < 1024 && this.laptopScreen === true) {
           this.laptopScreen = false
           this.$store.commit('handleChangingScreen', this.laptopScreen)
@@ -41,11 +42,11 @@
     },
 
     computed: {
-      handleResize() {
-        return this.debounce(this.checkWindowWidth, 100)
+      handleResize(): any {
+        return (this as any).debounce(this.checkWindowWidth, 100)
       },
     },
-  }
+  })
 </script>
 
 <style lang="scss">
