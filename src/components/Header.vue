@@ -2,10 +2,10 @@
   <div class="header">
     <div>
       <img
-        @click="$router.go(-1)"
         class="header__arrow"
         src="@/assets/images/arrow-left.svg"
         alt="Link to back: arrow-left"
+        @click="$router.go(-1)"
       />
       <img @click="toMainPage" class="header__logo" :src="isLaptopScreen ? fullLogo : iconLogo" alt="Oddspedia Logo" />
     </div>
@@ -25,7 +25,7 @@
   import fullLogo from '@/assets/images/fullLogo.svg'
   import { mapGetters } from 'vuex'
   import Vue from 'vue'
-  
+
   export default Vue.extend({
     components: { UiUserName },
 
